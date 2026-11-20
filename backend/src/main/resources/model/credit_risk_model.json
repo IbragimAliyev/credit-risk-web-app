@@ -1,0 +1,261 @@
+{
+  "modelVersion": "lr-2026-11-20",
+  "algorithm": "logistic_regression",
+  "trainedOn": "Kaggle laotse/credit-risk-dataset",
+  "target": "probability of default (loan_status = 1)",
+  "intercept": -1.7532264576661614,
+  "columns": [
+    {
+      "name": "age",
+      "factor": "Age",
+      "mean": 27.691904192540594,
+      "scale": 6.164279262331194,
+      "coefficient": -0.0091091862804002
+    },
+    {
+      "name": "log_income",
+      "factor": "Income",
+      "mean": 10.924451196926094,
+      "scale": 0.5634503179117414,
+      "coefficient": -0.5117255577672564
+    },
+    {
+      "name": "loan_to_income",
+      "factor": "Loan-to-income",
+      "mean": 0.1706187449060431,
+      "scale": 0.10696154110935119,
+      "coefficient": 0.8580451925328988
+    },
+    {
+      "name": "employment_years",
+      "factor": "Employment length",
+      "mean": 4.7643383345547115,
+      "scale": 3.9686359914736697,
+      "coefficient": -0.021932785091043083
+    },
+    {
+      "name": "credit_history_years",
+      "factor": "Credit history length",
+      "mean": 5.791105797045551,
+      "scale": 4.040126523278017,
+      "coefficient": 0.008599483847564583
+    },
+    {
+      "name": "previous_default",
+      "factor": "Previous default",
+      "mean": 0.17830832722644346,
+      "scale": 0.38277208318809125,
+      "coefficient": 0.415360504662914
+    },
+    {
+      "name": "home_ownership=RENT",
+      "factor": "Home ownership",
+      "mean": 0.5052262120569291,
+      "scale": 0.49997268596147926,
+      "coefficient": 0.31677414884966976
+    },
+    {
+      "name": "home_ownership=OWN",
+      "factor": "Home ownership",
+      "mean": 0.07829675627723995,
+      "scale": 0.2686379984918411,
+      "coefficient": -0.44493735267039514
+    },
+    {
+      "name": "home_ownership=MORTGAGE",
+      "factor": "Home ownership",
+      "mean": 0.4132757357195202,
+      "scale": 0.49242146783523716,
+      "coefficient": -0.08252997653937662
+    },
+    {
+      "name": "home_ownership=OTHER",
+      "factor": "Home ownership",
+      "mean": 0.0032012959463107956,
+      "scale": 0.0564893587375085,
+      "coefficient": 0.03165534288219208
+    },
+    {
+      "name": "loan_intent=EDUCATION",
+      "factor": "Loan purpose",
+      "mean": 0.19940602460755197,
+      "scale": 0.39955382861107,
+      "coefficient": -0.14349172692580184
+    },
+    {
+      "name": "loan_intent=MEDICAL",
+      "factor": "Loan purpose",
+      "mean": 0.18517375708720638,
+      "scale": 0.38843845944166583,
+      "coefficient": 0.0704897018241962
+    },
+    {
+      "name": "loan_intent=VENTURE",
+      "factor": "Loan purpose",
+      "mean": 0.17375708720638716,
+      "scale": 0.3789004643068403,
+      "coefficient": -0.18721221842521613
+    },
+    {
+      "name": "loan_intent=PERSONAL",
+      "factor": "Loan purpose",
+      "mean": 0.17013152312261348,
+      "scale": 0.37574830400494574,
+      "coefficient": -0.043149019897378085
+    },
+    {
+      "name": "loan_intent=DEBTCONSOLIDATION",
+      "factor": "Loan purpose",
+      "mean": 0.16118332240521463,
+      "scale": 0.36769995782380943,
+      "coefficient": 0.15397885802511885
+    },
+    {
+      "name": "loan_intent=HOMEIMPROVEMENT",
+      "factor": "Loan purpose",
+      "mean": 0.11034828557102634,
+      "scale": 0.31332338157654555,
+      "coefficient": 0.1930328509457204
+    }
+  ],
+  "clip": {
+    "age": [
+      20.0,
+      94.0
+    ],
+    "income": [
+      4080.0,
+      2039784.0
+    ],
+    "loanAmount": [
+      500.0,
+      35000.0
+    ],
+    "employmentYears": [
+      0.0,
+      38.0
+    ],
+    "creditHistoryYears": [
+      2.0,
+      30.0
+    ]
+  },
+  "thresholds": {
+    "low": 0.15,
+    "high": 0.4
+  },
+  "metrics": {
+    "testAUC": 0.8161,
+    "gini": 0.6322,
+    "ks": 0.4819,
+    "trainingRows": 25927,
+    "testRows": 6482,
+    "defaultRate": 0.2187
+  },
+  "testVectors": [
+    {
+      "input": {
+        "age": 22,
+        "income": 42996.0,
+        "loanAmount": 4800.0,
+        "employmentYears": 3,
+        "creditHistoryYears": 4,
+        "previousDefault": true,
+        "homeOwnership": "RENT",
+        "loanIntent": "PERSONAL"
+      },
+      "expectedProbability": 0.33525125777840187
+    },
+    {
+      "input": {
+        "age": 31,
+        "income": 108000.0,
+        "loanAmount": 35000.0,
+        "employmentYears": 11,
+        "creditHistoryYears": 10,
+        "previousDefault": false,
+        "homeOwnership": "MORTGAGE",
+        "loanIntent": "DEBTCONSOLIDATION"
+      },
+      "expectedProbability": 0.22893961289807807
+    },
+    {
+      "input": {
+        "age": 30,
+        "income": 42000.0,
+        "loanAmount": 11000.0,
+        "employmentYears": 5,
+        "creditHistoryYears": 10,
+        "previousDefault": false,
+        "homeOwnership": "RENT",
+        "loanIntent": "MEDICAL"
+      },
+      "expectedProbability": 0.43616447131961705
+    },
+    {
+      "input": {
+        "age": 31,
+        "income": 45000.0,
+        "loanAmount": 10000.0,
+        "employmentYears": 4,
+        "creditHistoryYears": 5,
+        "previousDefault": false,
+        "homeOwnership": "RENT",
+        "loanIntent": "EDUCATION"
+      },
+      "expectedProbability": 0.23416713118989083
+    },
+    {
+      "input": {
+        "age": 34,
+        "income": 30412.0,
+        "loanAmount": 12000.0,
+        "employmentYears": 4,
+        "creditHistoryYears": 5,
+        "previousDefault": false,
+        "homeOwnership": "RENT",
+        "loanIntent": "MEDICAL"
+      },
+      "expectedProbability": 0.7483356286961387
+    },
+    {
+      "input": {
+        "age": 29,
+        "income": 84000.0,
+        "loanAmount": 15000.0,
+        "employmentYears": 11,
+        "creditHistoryYears": 10,
+        "previousDefault": false,
+        "homeOwnership": "OWN",
+        "loanIntent": "EDUCATION"
+      },
+      "expectedProbability": 0.011927681936885233
+    },
+    {
+      "input": {
+        "age": 26,
+        "income": 32496.0,
+        "loanAmount": 4200.0,
+        "employmentYears": 8,
+        "creditHistoryYears": 3,
+        "previousDefault": false,
+        "homeOwnership": "MORTGAGE",
+        "loanIntent": "DEBTCONSOLIDATION"
+      },
+      "expectedProbability": 0.1574422397194222
+    },
+    {
+      "input": {
+        "age": 22,
+        "income": 57996.0,
+        "loanAmount": 21250.0,
+        "employmentYears": 4,
+        "creditHistoryYears": 4,
+        "previousDefault": false,
+        "homeOwnership": "MORTGAGE",
+        "loanIntent": "VENTURE"
+      },
+      "expectedProbability": 0.23438851612664655
+    }
+  ]
+}

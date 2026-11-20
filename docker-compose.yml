@@ -1,0 +1,53 @@
+# Default:          docker compose up -d                 -> PostgreSQL only (run backend/frontend locally)
+# Full stack:       docker compose --profile full up -d --build
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: creditrisk-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-creditrisk}
+      POSTGRES_USER: ${POSTGRES_USER:-creditrisk}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-creditrisk}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    profiles: ["full"]
+    build: ./backend
+    container_name: creditrisk-backend
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB:-creditrisk}
+      POSTGRES_USER: ${POSTGRES_USER:-creditrisk}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-creditrisk}
+      JWT_SECRET: ${JWT_SECRET:-dev-only-secret-change-me-please-0123456789abcdef}
+      JWT_EXPIRATION_MS: ${JWT_EXPIRATION_MS:-86400000}
+      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:-http://localhost:3000}
+    ports:
+      - "8080:8080"
+
+  frontend:
+    profiles: ["full"]
+    build:
+      context: ./frontend
+      args:
+        # The browser calls the API directly, so this must be reachable from the host.
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:8080}
+    container_name: creditrisk-frontend
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
+
+volumes:
+  pgdata:

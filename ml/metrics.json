@@ -1,0 +1,58 @@
+{
+  "data": {
+    "rawRows": 32581,
+    "duplicatesRemoved": 165,
+    "implausibleRowsRemoved": 7,
+    "missingEmploymentLength": 887,
+    "cleanRows": 32409,
+    "defaultRate": 0.2187
+  },
+  "split": {
+    "train": 25927,
+    "test": 6482,
+    "seed": 42
+  },
+  "logisticRegression": {
+    "testAUC": 0.8161,
+    "gini": 0.6322,
+    "ks": 0.4819,
+    "brierScore": 0.1221,
+    "cvAUCMean": 0.8158,
+    "cvAUCStd": 0.0045,
+    "confusionMatrixAt50pct": {
+      "tn": 4838,
+      "fp": 226,
+      "fn": 808,
+      "tp": 610,
+      "precision": 0.7297,
+      "recall": 0.4302
+    }
+  },
+  "riskBands": [
+    {
+      "label": "LOW",
+      "applicants": 3462,
+      "share": 0.5341,
+      "meanPredictedPD": 0.0651,
+      "observedDefaultRate": 0.08
+    },
+    {
+      "label": "MEDIUM",
+      "applicants": 1828,
+      "share": 0.282,
+      "meanPredictedPD": 0.2529,
+      "observedDefaultRate": 0.2161
+    },
+    {
+      "label": "HIGH",
+      "applicants": 1192,
+      "share": 0.1839,
+      "meanPredictedPD": 0.6142,
+      "observedDefaultRate": 0.6258
+    }
+  ],
+  "comparison": {
+    "baselineLoanToIncomeOnlyAUC": 0.7245,
+    "gradientBoostingAUC": 0.9045
+  }
+}
